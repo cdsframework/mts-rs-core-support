@@ -96,16 +96,14 @@ public class CoreInterceptor implements ReaderInterceptor, WriterInterceptor {
         }
 
         StringBuffer requestURL = httpServletRequest.getRequestURL();
-//        logger.debug(METHODNAME, "requestURL=", requestURL);                
+        logger.debug(METHODNAME, "requestURL=", requestURL);                
         String requestURI = httpServletRequest.getRequestURI();
 
         if (requestURI.contains(CoreRsConstants.GENERAL_RS_ROOT)) {        
             String method = httpServletRequest.getMethod();
             if (!method.equalsIgnoreCase("GET")) {
                 boolean byPass = false;
-                if (logger.isDebugEnabled()) {
-                    logger.debug(METHODNAME, "CoreRsConstants.BYPASSINTERCEPTOR=", CoreRsConstants.BYPASSINTERCEPTOR);
-                }
+                logger.debug(METHODNAME, "CoreRsConstants.BYPASSINTERCEPTOR=", CoreRsConstants.BYPASSINTERCEPTOR);
                 
                 if (CoreRsConstants.BYPASSINTERCEPTOR != null) {
                     for (String byPassInterceptor : CoreRsConstants.BYPASSINTERCEPTOR) {
@@ -115,15 +113,11 @@ public class CoreInterceptor implements ReaderInterceptor, WriterInterceptor {
                         }
                     }
                 }
-                if (logger.isDebugEnabled()) {
-                    logger.debug(METHODNAME, "byPass=", byPass);
-                }
+                logger.debug(METHODNAME, "byPass=", byPass);
                 
                 if (!byPass) {
                     String resourceName = ResourceUtil.getResourceNameFromPath(httpServletRequest.getPathInfo());
-                    if (logger.isDebugEnabled()) {
-                        logger.debug(METHODNAME, "resourceName=", resourceName);
-                    }
+                    logger.debug(METHODNAME, "resourceName=", resourceName);
 
                     // For just the general rs service we need to parse out the resourceName from the path
                     try {

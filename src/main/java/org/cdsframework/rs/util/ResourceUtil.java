@@ -43,7 +43,7 @@ import org.glassfish.jersey.message.internal.ReaderWriter;
  */
 public class ResourceUtil {
 
-    private static LogUtils logger = LogUtils.getLogger(ResourceUtil.class);
+    private static final LogUtils logger = LogUtils.getLogger(ResourceUtil.class);
 
     public static String getResourceNameFromPath(String path) {
         final String METHODNAME = "getResourceNameFromPath ";
@@ -66,6 +66,10 @@ public class ResourceUtil {
 
     public static String addResourceName(String resourceName, String json) throws JSONException {
         final String METHODNAME = "addResourceName ";
+        logger.debug(METHODNAME, "resourceName=", resourceName);
+        if (json.startsWith("[")) {
+            return json;
+        }
         try {
             JSONObject jsonObject = new JSONObject(json);
             jsonObject.put(BaseDTODeserializer.resourcePropertyName, resourceName);
