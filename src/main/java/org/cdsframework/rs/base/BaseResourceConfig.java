@@ -32,8 +32,8 @@ import org.cdsframework.rs.provider.GenericExceptionMapper;
 import org.cdsframework.rs.support.CoreConfiguration;
 import org.cdsframework.util.LogUtils;
 import org.glassfish.jersey.client.filter.EncodingFilter;
-import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.message.GZipEncoder;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -43,7 +43,7 @@ import org.glassfish.jersey.server.ResourceConfig;
  * @author HLN Consulting, LLC
  */
 public class BaseResourceConfig extends ResourceConfig {
-    private LogUtils logger = LogUtils.getLogger(getClass());
+    private final LogUtils logger = LogUtils.getLogger(getClass());
     
     public BaseResourceConfig() {
         final String METHODNAME = "constructor ";
@@ -54,7 +54,7 @@ public class BaseResourceConfig extends ResourceConfig {
         register(GenericExceptionMapper.class);
         
         if (CoreConfiguration.isLoggingFilter()) {
-            register(LoggingFilter.class);
+            register(LoggingFeature.class);
             register(CoreLoggingFilter.class);
         }
         if (CoreConfiguration.isGzipSupport()) {

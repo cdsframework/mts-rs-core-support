@@ -25,11 +25,6 @@
  */
 package org.cdsframework.rs;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -40,13 +35,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.PathSegment;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.StreamingOutput;
 import org.cdsframework.base.BaseDTO;
-import org.cdsframework.dto.PropertyBagDTO;
 import org.cdsframework.enumeration.Operation;
 import org.cdsframework.exceptions.AuthenticationException;
 import org.cdsframework.exceptions.AuthorizationException;
@@ -56,8 +48,6 @@ import org.cdsframework.exceptions.NotFoundException;
 import org.cdsframework.exceptions.ValidationException;
 import org.cdsframework.rs.base.BaseRSService;
 import org.cdsframework.rs.support.CoreRsConstants;
-import org.cdsframework.rs.util.PropertyBagUtils;
-import org.glassfish.jersey.media.multipart.FormDataParam;
 
 /**
  *
